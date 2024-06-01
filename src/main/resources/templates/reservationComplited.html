@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+    <style rel="stylesheet">
+        .card-image {
+            max-height: 150px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-body span {
+            background-color: #e51400 !important;
+            float: right;
+        }
+
+        .img-cover {
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{components/header}"></div>
+<div th:replace="~{components/toolbar}"></div>
+<div class="container-fluid position-relative p-0">
+    <div th:replace="~{components/navbar}"></div>
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-center py-5">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Reservation Сompleted</h1>
+                    <h2 class="display-3 text-white mb-3 animated slideInDown">The administrator will contact you</h2>
+                    <a class="btn-success" href="/">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

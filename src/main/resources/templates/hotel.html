@@ -1,0 +1,34 @@
+<div th:replace="~{components/header}"></div>
+<body>
+<div th:replace="~{components/toolbar}"></div>
+<div class="container-fluid position-relative p-0">
+    <div th:replace="~{components/navbar}"></div>
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-center py-5">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown" th:text="${hotel.getName()}"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center mb-5" th:text="${hotel.getName()}"></h1>
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img class="card-image img-fluid img-cover" th:src="${hotel.getImage()}" th:alt="${hotel.getName()}">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <p class="card-text" th:text="${hotel.getDescription()}"></p>
+                <p class="card-text" th:text="${hotel.getAddress()}"></p>
+                <b class="card-text" th:text="${hotel.getRating()}">Rating: </b>
+            </div>
+        </div>
+    </div>
+    <a class="btn-success" th:href="@{/booking/hotel/{hotelstr}(hotelstr = ${hotel.getSlug()})}">Book Room</a>
+</div>
+</body>
+</html>

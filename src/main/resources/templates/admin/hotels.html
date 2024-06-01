@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="/components/admin-header :: header"></head>
+<body class="g-sidenav-show">
+<div th:replace="admin/components/navbar :: navbar"></div>
+    <div th:fragment="content" class="main-content" id="panel">
+        <div class="container-fluid pt-3">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Hotels List</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Rating</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Slug</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="hotel : ${hotels}">
+                                <td th:text="${hotel.name}">Name</td>
+                                <td th:text="${hotel.address}">Address</td>
+                                <td th:text="${hotel.rating}">Rating</td>
+                                <td th:text="${hotel.slug}">Slug</td>
+                                <td>
+                                    <a th:href="@{|/admin/hotel/${hotel.slug}/view|}">View</a> |
+                                    <a th:href="@{|/admin/hotel/${hotel.slug}/edit|}">Edit</a> |
+                                    <a th:href="@{|/admin/hotel/${hotel.id}/delete|}">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a th:href="@{|/admin/hotels/add|}" class="btn btn-primary mt-3">Add New Hotel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div th:replace="admin/components/footer :: footer"></div>-->
+</div>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

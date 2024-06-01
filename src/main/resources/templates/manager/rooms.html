@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="components/admin-header :: header">
+    <title>Room List</title>
+</head>
+<body class="g-sidenav-show">
+<div th:replace="manager/components/navbar :: navbar"></div>
+<div th:fragment="content" class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Room List</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center justify-content-center mb-0">
+                        <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Number</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Smoking</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price Per Day</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room Type</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="room : ${rooms}">
+                            <td th:text="${room.number}">Number</td>
+                            <td th:text="${room.description}">Description</td>
+                            <td th:text="${room.isSmoke ? 'Yes' : 'No'}">Is Smoking</td>
+                            <td th:text="${room.status}">Status</td>
+                            <td th:text="${room.pricePerDay}">Price Per Day</td>
+                            <td th:text="${room.roomTypeId}">Room Type</td>
+                            <td>
+                                <a th:href="@{|/manager/rooms/${room.id}/edit|}">Edit</a> |
+                                <a th:href="@{|/manager/rooms/${room.id}/delete|}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a th:href="@{/manager/rooms/add}" class="btn btn-primary mt-3">Add New Room</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

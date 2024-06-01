@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="components/admin-header :: header">
+    <title>Add Room</title>
+</head>
+<body class="g-sidenav-show">
+<div th:replace="manager/components/navbar :: navbar"></div>
+<div th:fragment="content" class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Add Room</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <form th:action="@{/manager/rooms/add}" th:object="${room}" method="post" class="p-3">
+                    <div class="mb-3">
+                        <label for="number" class="form-label">Number</label>
+                        <input type="text" id="number" class="form-control" th:field="*{number}" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" class="form-control" th:field="*{description}"></textarea>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" id="isSmoke" class="form-check-input" th:field="*{isSmoke}" />
+                        <label for="isSmoke" class="form-check-label">Is Smoking</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select id="status" class="form-select" th:field="*{status}">
+                            <option value="active">Active</option>
+                            <option value="reserved">Reserved</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pricePerDay" class="form-label">Price Per Day</label>
+                        <input type="number" id="pricePerDay" class="form-control" th:field="*{pricePerDay}" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="roomTypeId" class="form-label">Room Type</label>
+                        <select id="roomTypeId" class="form-select" th:field="*{roomTypeId}">
+                            <option th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}">Room Type</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Room</button>
+                </form>
+                <a th:href="@{|/manager/rooms|}" class="btn btn-secondary mt-3">Back to Room List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

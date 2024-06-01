@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="/components/admin-header :: header"></head>
+<body class="g-sidenav-show">
+<div th:replace="admin/components/navbar :: navbar"></div>
+<div th:fragment="content" class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Hotel Details</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="p-3">
+                    <h2 th:text="${hotel.name}">Hotel Name</h2>
+                    <p th:text="'Stars: ' + ${hotel.rating}">Stars</p>
+                    <p th:text="${hotel.description}">Description</p>
+                    <img th:src="${hotel.image}" alt="Hotel Image" width="200"/>
+                    <div class="mt-3">
+                        <a th:href="@{/admin/hotels}" class="btn btn-secondary">Back to Hotel List</a>
+                        <a th:href="|/admin/hotels/${hotel.slug}/manager-list|" class="btn btn-primary">Manager List</a>
+                        <a th:href="@{|/admin/hotels/${hotel.slug}/add-manager|}" class="btn btn-primary">Add Manager</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div th:replace="admin/components/footer :: footer"></div>-->
+</div>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

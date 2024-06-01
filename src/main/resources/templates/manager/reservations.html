@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="components/admin-header :: header">
+    <title>Reservations</title>
+</head>
+<body class="g-sidenav-show">
+<div th:replace="manager/components/navbar :: navbar"></div>
+<div th:fragment="content" class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Reservations</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <form th:action="@{/manager/reservations}" method="post" th:object="${handRegistration}" class="p-3">
+                    <input type="hidden" th:field="*{isActive}" th:value="true"/>
+                    <input type="hidden" th:field="*{managerId}" th:value="${myManageId}"/>
+                    <div class="mb-3">
+                        <label for="roomType" class="form-label">Room Type</label>
+                        <select id="roomType" name="roomTypeId" class="form-select">
+                            <option value="">Select a room type</option>
+                            <option th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}">Room Type</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="roomId" class="form-label">Room</label>
+                        <select id="roomId" name="roomId" class="form-select" th:field="*{roomId}">
+                            <option value="">Select a room</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" id="startDate" class="form-control" th:field="*{start_date}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input type="date" id="endDate" class="form-control" th:field="*{end_date}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="guestName" class="form-label">Guest Name</label>
+                        <input type="text" id="guestName" class="form-control" th:field="*{guestFullName}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="guestEmail" class="form-label">Guest Email</label>
+                        <input type="email" id="guestEmail" class="form-control" th:field="*{guestEmail}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="guestPhoneNumber" class="form-label">Guest Phone</label>
+                        <input type="tel" id="guestPhoneNumber" class="form-control" th:field="*{guestPhoneNumber}"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <a th:href="@{/manager/hotel}" class="btn btn-secondary mt-3">Back to Hotel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const roomType = document.getElementById("roomType");
+
+    roomType.addEventListener("change", () => {
+        fetch(`/api/get-rooms/${roomType.value}`)
+            .then(response => response.json())
+            .then(data => {
+                const roomSelect = document.getElementById('roomId');
+                roomSelect.innerHTML = ''; // Clear existing options
+                data.forEach(room => {
+                    const option = document.createElement('option');
+                    option.value = room.id;
+                    option.textContent = room.number; // Assuming room number is displayed
+                    roomSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.log(error));
+    });
+</script>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

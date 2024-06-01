@@ -1,0 +1,43 @@
+<div th:replace="~{components/header}"></div>
+<style>
+    .card-image {
+        height: 200px;
+        object-fit: fill;
+    }
+</style>
+<body>
+<div th:replace="~{components/toolbar}"></div>
+<div class="container-fluid position-relative p-0">
+    <div th:replace="~{components/navbar}"></div>
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-center py-5">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center mb-5">Choose Hotel</h1>
+    <div class="row gap-3 justify-content-center">
+        <div th:each="hotel : ${hotels}" class="card col-3 rounded shadow m-2">
+            <a class="col no-gutters m-2" th:href="@{/hotel/{hotelstr}(hotelstr=${hotel.getSlug()})}">
+                <div class="col-md-12">
+                    <img class="card-image img-fluid img-cover" style="display: block; margin: 0 auto;" th:src="${hotel.getImage()}" th:alt="${hotel.getName()}">
+                </div>
+                <div>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${hotel.getName()}"></h5>
+                        <p class="card-text" th:text="${hotel.getDescription().substring(0, 150)}"></p>
+                        <b class="card-text" th:text="${hotel.getRating()}">Rating: </b>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

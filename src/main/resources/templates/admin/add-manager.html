@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="/components/admin-header :: header">
+    <title>Add Manager</title>
+</head>
+<body class="g-sidenav-show">
+<div th:replace="admin/components/navbar :: navbar"></div>
+<div class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Add Manager</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="container">
+                    <form th:action="@{/admin/hotel/{hotelSlug}/add-manager(hotelSlug=${hotelSlug})}" method="post">
+                        <div class="form-group">
+                            <label for="fullName">Full Name:</label>
+                            <input type="text" id="fullName" class="form-control" name="fullName" th:field="*{manager.fullName}" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" class="form-control" name="email" th:field="*{manager.email}" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" class="form-control" name="password" th:field="*{manager.password}" required/>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Add Manager</button>
+                        </div>
+                    </form>
+                    <a th:href="|/admin/hotel/${hotelSlug}/view|" class="btn btn-secondary mt-3">Back to Hotel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

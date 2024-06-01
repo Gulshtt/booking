@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="components/admin-header :: header">
+    <title>Reservation List</title>
+</head>
+<body class="g-sidenav-show">
+<div th:replace="manager/components/navbar :: navbar"></div>
+<div th:fragment="content" class="main-content" id="panel">
+    <div class="container-fluid pt-3">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Reservation List</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center justify-content-center mb-0">
+                        <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Guest Name</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room Type</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Room</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="reservation : ${reservations}">
+                            <td th:text="${reservation.guestFullName}">Guest Name</td>
+                            <td th:text="${reservation.guestEmail}">Email</td>
+                            <td th:text="${reservation.guestPhoneNumber}">Phone</td>
+                            <td th:text="${reservation.roomTypeName}">Room Type</td>
+                            <td th:text="${reservation.roomNumber}">Room</td>
+                            <td th:text="${reservation.start_date}">Start Date</td>
+                            <td th:text="${reservation.end_date}">End Date</td>
+                            <td>
+                                <a th:href="@{|/manager/reservations/${reservation.id}/edit|}">Edit</a> |
+                                <a th:href="@{|/manager/reservations/delete/${reservation.id}|}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a th:href="@{/manager/reservations/add}" class="btn btn-primary mt-3">Add New Reservation</a>
+                    <a th:href="@{/manager/hotel}" class="btn btn-secondary mt-3">Back to Hotel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/popper.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/core/bootstrap.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/chartjs.min.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/plugins/Chart.extension.js"></script>
+<script src="https://demos.creative-tim.com/soft-ui-dashboard/assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+<script th:src="@{/js/loopple/loopple.js}"></script>
+</body>
+</html>

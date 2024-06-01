@@ -1,0 +1,33 @@
+<div th:replace="~{components/header}"></div>
+
+<body>
+<div th:replace="~{components/toolbar}"></div>
+<div class="container-fluid position-relative p-0">
+    <div th:replace="~{components/navbar}"></div>
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-center py-5">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Login</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Email:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+</body>
+
+</html>
